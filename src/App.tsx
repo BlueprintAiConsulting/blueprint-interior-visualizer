@@ -48,6 +48,16 @@ const App: React.FC = () => {
   const handleUpload = (file: File) => { const reader = new FileReader(); reader.onload = (e) => { setSelectedImage(e.target?.result as string); setResultImage(null); setEnhancedImage(null); setShowEnhancePrompt(true); setCompletedPasses([]); setRenderPhase('idle'); }; reader.readAsDataURL(file); };
   const handleStartOver = () => { if (confirm('Start over? All progress will be lost.')) { setSelectedImage(null); setResultImage(null); setEnhancedImage(null); setShowEnhancePrompt(false); setImageOptimizeInfo(null); setZones(getDefaultZonesForRoom(roomType)); setCompletedPasses([]); setRenderPhase('idle'); } };
 
+  const handleSelectSample = async (url: string) => {
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const reader = new FileReader();
+      reader.onload = (e) => { setSelectedImage(e.target?.result as string); setResultImage(null); setEnhancedImage(null); setShowEnhancePrompt(false); setCompletedPasses([]); setRenderPhase('idle'); };
+      reader.readAsDataURL(blob);
+    } catch { /* fallback: just use the URL directly */ setSelectedImage(url); setResultImage(null); setEnhancedImage(null); setShowEnhancePrompt(false); setCompletedPasses([]); setRenderPhase('idle'); }
+  };
+
   const handleEnhance = async () => {
     if (!selectedImage) return;
     ai.setIsProcessing(true); ai.setError(null);
@@ -104,7 +114,7 @@ const App: React.FC = () => {
               <h2 className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] mb-3">Room Type</h2>
               <RoomTypeSelector selectedRoom={roomType} onSelectRoom={handleRoomChange} />
             </div>
-            <SourceAsset selectedImage={selectedImage} onUpload={handleUpload} showEnhancePrompt={showEnhancePrompt} setShowEnhancePrompt={setShowEnhancePrompt} isEnhancing={ai.isProcessing && !enhancedImage} enhancedImage={enhancedImage} enhanceError={ai.error} onEnhance={handleEnhance}
+            <SourceAsset selectedImage={selectedImage} onUpload={handleUpload} onSelectSampleUrl={handleSelectSample} showEnhancePrompt={showEnhancePrompt} setShowEnhancePrompt={setShowEnhancePrompt} isEnhancing={ai.isProcessing && !enhancedImage} enhancedImage={enhancedImage} enhanceError={ai.error} onEnhance={handleEnhance}
               onAcceptEnhanced={() => { if (enhancedImage) setSelectedImage(enhancedImage); setEnhancedImage(null); setShowEnhancePrompt(false); setImageOptimizeInfo('Room photo optimized for visualization'); }} imageOptimizeInfo={imageOptimizeInfo} />
             <div className="space-y-3">
               {PANEL_CONFIG.map(panel => {

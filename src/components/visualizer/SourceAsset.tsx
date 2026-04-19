@@ -1,27 +1,62 @@
 import React, { useRef } from 'react';
-import { Upload, Camera, Sparkles, Loader2 } from 'lucide-react';
+import { Upload, Camera, Sparkles, Loader2, ImageIcon } from 'lucide-react';
+
+const SAMPLE_IMAGES = [
+  { id: 'bath-1', src: `${import.meta.env.BASE_URL}samples/bathroom-1.jpg`, label: 'Builder-Grade Bath', desc: 'Oak vanity · Beige tile' },
+  { id: 'bath-2', src: `${import.meta.env.BASE_URL}samples/bathroom-2.jpg`, label: 'Brass & Oak Bath', desc: 'Formica counter · Dated tile' },
+  { id: 'bath-3', src: `${import.meta.env.BASE_URL}samples/bathroom-3.jpg`, label: 'Guest Bathroom', desc: 'Basic fixtures · Vinyl floor' },
+];
 
 interface SourceAssetProps {
-  selectedImage: string | null; onUpload: (file: File) => void; showEnhancePrompt: boolean;
-  setShowEnhancePrompt: (show: boolean) => void; isEnhancing: boolean; enhancedImage: string | null;
-  enhanceError: string | null; onEnhance: () => void; onAcceptEnhanced: () => void; imageOptimizeInfo: string | null;
+  selectedImage: string | null; onUpload: (file: File) => void; onSelectSampleUrl: (url: string) => void;
+  showEnhancePrompt: boolean; setShowEnhancePrompt: (show: boolean) => void; isEnhancing: boolean;
+  enhancedImage: string | null; enhanceError: string | null; onEnhance: () => void;
+  onAcceptEnhanced: () => void; imageOptimizeInfo: string | null;
 }
 
 const SourceAsset: React.FC<SourceAssetProps> = ({
-  selectedImage, onUpload, showEnhancePrompt, setShowEnhancePrompt, isEnhancing, enhancedImage, enhanceError, onEnhance, onAcceptEnhanced, imageOptimizeInfo,
+  selectedImage, onUpload, onSelectSampleUrl, showEnhancePrompt, setShowEnhancePrompt,
+  isEnhancing, enhancedImage, enhanceError, onEnhance, onAcceptEnhanced, imageOptimizeInfo,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleDrop = (e: React.DragEvent) => { e.preventDefault(); if (e.dataTransfer.files?.[0]) onUpload(e.dataTransfer.files[0]); };
+
   return (
     <div className="rounded-xl border border-[#1E293B] overflow-hidden bg-[#111827]">
       <div className="p-4">
         {!selectedImage ? (
-          <div onClick={() => fileInputRef.current?.click()} onDrop={handleDrop} onDragOver={e => e.preventDefault()}
-            className="border-2 border-dashed border-[#334155] hover:border-[#3B82F6]/50 rounded-xl p-8 text-center cursor-pointer transition-all group">
-            <Upload className="w-10 h-10 text-[#475569] group-hover:text-[#60A5FA] mx-auto mb-3 transition-colors" />
-            <p className="text-sm font-bold text-[#94A3B8] group-hover:text-[#E2E8F0] mb-1 transition-colors">Upload Room Photo</p>
-            <p className="text-[10px] text-[#475569]">Drag & drop or click to browse</p>
-            <p className="text-[9px] text-[#334155] mt-2">JPG, PNG, WebP — max 20MB</p>
+          <div className="space-y-4">
+            {/* Upload area */}
+            <div onClick={() => fileInputRef.current?.click()} onDrop={handleDrop} onDragOver={e => e.preventDefault()}
+              className="border-2 border-dashed border-[#334155] hover:border-[#3B82F6]/50 rounded-xl p-6 text-center cursor-pointer transition-all group">
+              <Upload className="w-8 h-8 text-[#475569] group-hover:text-[#60A5FA] mx-auto mb-2 transition-colors" />
+              <p className="text-sm font-bold text-[#94A3B8] group-hover:text-[#E2E8F0] mb-1 transition-colors">Upload Room Photo</p>
+              <p className="text-[10px] text-[#475569]">Drag & drop or click to browse</p>
+              <p className="text-[9px] text-[#334155] mt-1">JPG, PNG, WebP — max 20MB</p>
+            </div>
+
+            {/* Sample images */}
+            <div>
+              <div className="flex items-center gap-2 mb-2.5">
+                <ImageIcon className="w-3 h-3 text-[#64748B]" />
+                <span className="text-[9px] font-bold uppercase tracking-widest text-[#64748B]">Or try a sample</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {SAMPLE_IMAGES.map(sample => (
+                  <button key={sample.id} onClick={() => onSelectSampleUrl(sample.src)}
+                    className="group rounded-lg overflow-hidden border border-[#1E293B] hover:border-[#3B82F6]/50 transition-all hover:shadow-[0_0_12px_rgba(59,130,246,0.15)]">
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img src={sample.src} alt={sample.label}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    </div>
+                    <div className="px-2 py-1.5 bg-[#0A0E17]">
+                      <p className="text-[8px] font-bold text-[#94A3B8] group-hover:text-[#E2E8F0] truncate transition-colors">{sample.label}</p>
+                      <p className="text-[7px] text-[#475569] truncate">{sample.desc}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           <div className="space-y-3">
