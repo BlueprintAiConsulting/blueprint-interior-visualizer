@@ -10,6 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
+    "start": "npx tsx server.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
