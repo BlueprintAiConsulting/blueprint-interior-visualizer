@@ -1,0 +1,43 @@
+import { MaterialLine } from '../types';
+export const FLOORING_OPTIONS: MaterialLine[] = [
+  { id: 'floor-hardwood', brand: 'Hardwood', line: 'Solid Oak Collection', material: 'Solid Hardwood', category: 'flooring', profileLabel: '5" Wide Plank — ¾" Solid Oak', description: 'Classic solid oak hardwood.', colors: [
+    { id: 'hw-natural-oak', name: 'Natural Oak', hex: '#C4A46E', hue: 'Light golden natural oak grain' },
+    { id: 'hw-honey-oak', name: 'Honey Oak', hex: '#B8924E', hue: 'Warm honey-amber oak' },
+    { id: 'hw-provincial', name: 'Provincial', hex: '#8A6A3E', hue: 'Medium warm brown stain' },
+    { id: 'hw-dark-walnut', name: 'Dark Walnut', hex: '#5A3E22', hue: 'Rich dark walnut brown' },
+    { id: 'hw-jacobean', name: 'Jacobean', hex: '#4A3420', hue: 'Deep dark brown-black' },
+    { id: 'hw-gray-wash', name: 'Gray Wash', hex: '#9A9488', hue: 'Weathered gray-washed oak' },
+    { id: 'hw-driftwood', name: 'Driftwood', hex: '#A8988A', hue: 'Gray-brown driftwood tone' },
+    { id: 'hw-ebony', name: 'Ebony', hex: '#2E2A22', hue: 'Very dark near-black stain' },
+  ]},
+  { id: 'floor-hickory', brand: 'Hardwood', line: 'Hickory Plank', material: 'Engineered Hardwood', category: 'flooring', profileLabel: '6" Wide Plank — Engineered Hickory', description: 'Rustic hickory for PA farmhouses.', colors: [
+    { id: 'hk-natural-hickory', name: 'Natural Hickory', hex: '#C8A870', hue: 'Light blonde-tan hickory' },
+    { id: 'hk-saddle', name: 'Saddle', hex: '#906838', hue: 'Medium warm brown hickory' },
+    { id: 'hk-autumn', name: 'Autumn', hex: '#7A5830', hue: 'Warm reddish-brown hickory' },
+    { id: 'hk-moonlight', name: 'Moonlight', hex: '#B0A28E', hue: 'Gray-toned light hickory' },
+    { id: 'hk-smokehouse', name: 'Smokehouse', hex: '#6A5A48', hue: 'Smoky dark brown hickory' },
+    { id: 'hk-shadow', name: 'Shadow', hex: '#4A4038', hue: 'Very dark charcoal hickory' },
+  ]},
+  { id: 'floor-lvp', brand: 'Luxury Vinyl', line: 'Rigid Core LVP', material: 'Luxury Vinyl Plank', category: 'flooring', profileLabel: '7" x 48" Plank — Waterproof Rigid Core', description: 'Waterproof LVP for kitchens, baths, basements.', colors: [
+    { id: 'lv-white-oak', name: 'White Oak', hex: '#C5B494', hue: 'Light natural white oak' },
+    { id: 'lv-aged-hickory', name: 'Aged Hickory', hex: '#A08A6A', hue: 'Medium aged brown hickory' },
+    { id: 'lv-gray-pine', name: 'Gray Pine', hex: '#9A948C', hue: 'Cool gray reclaimed pine' },
+    { id: 'lv-barnwood', name: 'Barnwood', hex: '#7E7068', hue: 'Rustic gray-brown barnwood' },
+    { id: 'lv-dusk-cherry', name: 'Dusk Cherry', hex: '#7A5444', hue: 'Warm cherry wood tone' },
+    { id: 'lv-midnight-oak', name: 'Midnight Oak', hex: '#3E3630', hue: 'Dark espresso oak' },
+    { id: 'lv-sandy-beach', name: 'Sandy Beach', hex: '#D0BEA4', hue: 'Very light sandy blonde' },
+    { id: 'lv-smoky-mountain', name: 'Smoky Mountain', hex: '#6E6860', hue: 'Medium gray-brown smoke' },
+    { id: 'lv-modern-maple', name: 'Modern Maple', hex: '#BCA882', hue: 'Warm light maple' },
+    { id: 'lv-vintage-pewter', name: 'Vintage Pewter', hex: '#8A8882', hue: 'Cool pewter silver-gray' },
+  ]},
+  { id: 'floor-tile', brand: 'Floor Tile', line: 'Porcelain & Ceramic', material: 'Floor Tile', category: 'flooring', profileLabel: '12" x 24" — Rectified Porcelain', description: 'Porcelain floor tile for PA bathrooms & kitchens.', colors: [
+    { id: 'ft-carrara-white', name: 'Carrara White', hex: '#E8E4E0', hue: 'White marble look with gray veining' },
+    { id: 'ft-calacatta-gold', name: 'Calacatta Gold', hex: '#F0EAE0', hue: 'Warm white marble with gold veining' },
+    { id: 'ft-gray-stone', name: 'Gray Stone', hex: '#9A9694', hue: 'Neutral medium gray stone' },
+    { id: 'ft-travertine-cream', name: 'Travertine Cream', hex: '#D8CEB8', hue: 'Warm cream travertine look' },
+    { id: 'ft-slate-charcoal', name: 'Slate Charcoal', hex: '#4A4A4A', hue: 'Dark charcoal slate' },
+    { id: 'ft-concrete-gray', name: 'Concrete Gray', hex: '#B0ACA8', hue: 'Industrial light concrete gray' },
+    { id: 'ft-wood-look-oak', name: 'Wood-Look Oak', hex: '#B09878', hue: 'Wood-grain porcelain oak tone' },
+    { id: 'ft-hexagon-white', name: 'Hexagon White', hex: '#F2F0EC', hue: 'Classic white hexagon mosaic' },
+  ]},
+];

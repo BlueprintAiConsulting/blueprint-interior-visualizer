@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueprintEnvision — Interior Remodel Visualizer | MBP Contracting</title>
+    <meta name="description" content="Visualize your kitchen, bathroom, or living room remodel with AI-powered rendering. Preview paint colors, cabinets, countertops, and flooring in seconds. Presented by MBP Contracting." />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%233B82F6'/%3E%3Crect x='5' y='5' width='22' height='22' rx='2' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M5 11h22M11 27V11' stroke='white' stroke-width='2'/%3E%3C/svg%3E" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BlueprintEnvision — Interior Remodel Visualizer" />
+    <meta property="og:description" content="AI-powered interior remodel visualizer. Preview paint, cabinets, countertops, and flooring on your room photo." />
+  <style>
+    #splash-screen { position: fixed; inset: 0; z-index: 9999; background: #0A0E17; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.6s ease, visibility 0.6s ease; background-image: radial-gradient(#1E293B 1px, transparent 1px); background-size: 24px 24px; }
+    #splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .splash-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+    .splash-logo-icon { width: 48px; height: 48px; background: #1E3A8A; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 30px rgba(59,130,246,0.5); animation: pulse-glow 2s ease-in-out infinite; }
+    .splash-logo-icon svg { width: 26px; height: 26px; color: white; }
+    .splash-logo-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    .splash-logo-text h1 { font-size: 24px; font-weight: 800; color: white; letter-spacing: -0.5px; margin:0; }
+    .splash-logo-text h1 span { color: #60A5FA; }
+    .splash-logo-text p { font-size: 10px; font-weight: 700; color: #60A5FA; letter-spacing: 0.2em; text-transform: uppercase; margin: 2px 0 0; background: linear-gradient(90deg, #60A5FA, #93C5FD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .splash-bar-wrap { width: 280px; height: 2px; background: #1E293B; border-radius: 99px; overflow: hidden; margin-bottom: 20px; }
+    .splash-bar { height: 100%; background: linear-gradient(90deg, #1E3A8A, #60A5FA); border-radius: 99px; animation: load-bar 4s ease-out forwards; }
+    .splash-status { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600; color: #475569; letter-spacing: 0.15em; text-transform: uppercase; }
+    @keyframes load-bar { 0% { width: 0% } 30% { width: 40% } 60% { width: 70% } 85% { width: 88% } 100% { width: 95% } }
+    @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 20px rgba(59,130,246,0.4); } 50% { box-shadow: 0 0 40px rgba(59,130,246,0.8); } }
+  </style>
+  </head>
+  <body>
+    <div id="splash-screen">
+      <div class="splash-logo">
+        <div class="splash-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <div class="splash-logo-text">
+          <h1>BLUEPRINT<span>ENVISION</span></h1>
+          <p>Interior Remodel Visualizer</p>
+        </div>
+      </div>
+      <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+      <div class="splash-status" id="splash-status">Initializing AI Engine...</div>
+    </div>
+    <div id="root"></div>
+    <script>
+      const msgs = ['Initializing AI Engine...','Loading material catalog...','Preparing visualization tools...','Almost ready...'];
+      let i = 0; const el = document.getElementById('splash-status');
+      const iv = setInterval(() => { i++; if(i < msgs.length && el) el.textContent = msgs[i]; else clearInterval(iv); }, 1200);
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

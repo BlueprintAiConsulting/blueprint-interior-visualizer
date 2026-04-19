@@ -1,0 +1,53 @@
+import { MaterialLine } from '../types';
+export const PAINT_OPTIONS: MaterialLine[] = [
+  { id: 'paint-neutral', brand: 'Interior Paint', line: 'Classic Neutrals', material: 'Interior Latex Paint', category: 'walls', profileLabel: 'Eggshell / Satin Finish', description: 'Timeless neutral tones — the most popular wall colors in PA homes.', colors: [
+    { id: 'pn-agreeable-gray', name: 'Agreeable Gray', hex: '#D0C8B8', hue: 'Warm greige — gray with beige undertone' },
+    { id: 'pn-accessible-beige', name: 'Accessible Beige', hex: '#D2C6AD', hue: 'Soft warm beige with gray undertone' },
+    { id: 'pn-repose-gray', name: 'Repose Gray', hex: '#C2BDB5', hue: 'True balanced warm gray' },
+    { id: 'pn-pale-oak', name: 'Pale Oak', hex: '#D6CCBB', hue: 'Soft warm putty with pink undertone' },
+    { id: 'pn-revere-pewter', name: 'Revere Pewter', hex: '#C5BAA5', hue: 'Warm pewter gray-beige' },
+    { id: 'pn-swiss-coffee', name: 'Swiss Coffee', hex: '#E8DFD0', hue: 'Creamy warm off-white' },
+    { id: 'pn-balboa-mist', name: 'Balboa Mist', hex: '#D5CFC5', hue: 'Light warm gray with slight taupe' },
+    { id: 'pn-edgecomb-gray', name: 'Edgecomb Gray', hex: '#D3C8B4', hue: 'Sandy warm greige' },
+    { id: 'pn-worldly-gray', name: 'Worldly Gray', hex: '#C2BAA8', hue: 'Medium warm gray-green undertone' },
+    { id: 'pn-alabaster', name: 'Alabaster', hex: '#EDEADE', hue: 'Warm soft white with creamy cast' },
+    { id: 'pn-snowbound', name: 'Snowbound', hex: '#EDE8DF', hue: 'Crisp warm white' },
+    { id: 'pn-iron-ore', name: 'Iron Ore', hex: '#4A4845', hue: 'Very dark warm charcoal gray' },
+  ]},
+  { id: 'paint-cool', brand: 'Interior Paint', line: 'Cool Tones', material: 'Interior Latex Paint', category: 'walls', profileLabel: 'Eggshell / Satin Finish', description: 'Cool blue-gray and green tones for modern PA interiors.', colors: [
+    { id: 'pc-sea-salt', name: 'Sea Salt', hex: '#C6D0C4', hue: 'Soft green-gray coastal' },
+    { id: 'pc-silver-strand', name: 'Silver Strand', hex: '#C1C5BD', hue: 'Cool silver-green-gray' },
+    { id: 'pc-rainwashed', name: 'Rainwashed', hex: '#C4D4CA', hue: 'Light blue-green spa' },
+    { id: 'pc-comfort-gray', name: 'Comfort Gray', hex: '#B8BEB1', hue: 'Muted sage green-gray' },
+    { id: 'pc-oyster-bay', name: 'Oyster Bay', hex: '#B4C6C4', hue: 'Ocean blue-green-gray' },
+    { id: 'pc-slate-tile', name: 'Slate Tile', hex: '#8A9490', hue: 'Medium cool blue-gray-green' },
+    { id: 'pc-network-gray', name: 'Network Gray', hex: '#A3A59E', hue: 'Cool balanced mid-gray' },
+    { id: 'pc-reflection', name: 'Reflection', hex: '#CDD4D0', hue: 'Very light cool gray-blue' },
+    { id: 'pc-stone-blue', name: 'Stone Blue', hex: '#8C9EAA', hue: 'Dusty medium blue-gray' },
+    { id: 'pc-mountain-air', name: 'Mountain Air', hex: '#C8CCBE', hue: 'Cool sage gray-green' },
+  ]},
+  { id: 'paint-bold', brand: 'Interior Paint', line: 'Bold Accents', material: 'Interior Latex Paint', category: 'walls', profileLabel: 'Eggshell / Satin Finish', description: 'Deep accent colors for feature walls.', colors: [
+    { id: 'pb-naval', name: 'Naval', hex: '#2F3D4F', hue: 'Deep classic navy blue' },
+    { id: 'pb-dark-night', name: 'Dark Night', hex: '#3B4758', hue: 'Deep navy with teal undertone' },
+    { id: 'pb-peppercorn', name: 'Peppercorn', hex: '#5D5C58', hue: 'Warm dark charcoal-brown' },
+    { id: 'pb-urbane-bronze', name: 'Urbane Bronze', hex: '#5E5549', hue: 'Warm dark bronze-brown' },
+    { id: 'pb-evergreen-fog', name: 'Evergreen Fog', hex: '#8E9585', hue: 'Moody sage green-gray' },
+    { id: 'pb-pewter-green', name: 'Pewter Green', hex: '#707C72', hue: 'Dark muted green-gray' },
+    { id: 'pb-cyberspace', name: 'Cyberspace', hex: '#3C4148', hue: 'Near-black blue-charcoal' },
+    { id: 'pb-cascades', name: 'Cascades', hex: '#4B6358', hue: 'Deep forest green' },
+    { id: 'pb-black-fox', name: 'Black Fox', hex: '#504A42', hue: 'Dark warm brown-gray' },
+    { id: 'pb-tricorn-black', name: 'Tricorn Black', hex: '#2E2E2E', hue: 'True deep matte black' },
+  ]},
+  { id: 'paint-trim', brand: 'Interior Paint', line: 'Trim & Ceiling', material: 'Interior Latex Paint', category: 'trim', profileLabel: 'Semi-Gloss / High-Gloss', description: 'Trim, baseboards, and ceiling whites.', colors: [
+    { id: 'pt-extra-white', name: 'Extra White', hex: '#F0EDE7', hue: 'Clean true white' },
+    { id: 'pt-pure-white', name: 'Pure White', hex: '#EDEBE2', hue: 'Warm crisp white' },
+    { id: 'pt-chantilly-lace', name: 'Chantilly Lace', hex: '#F3F0EB', hue: 'Bright cool-neutral white' },
+    { id: 'pt-white-dove', name: 'White Dove', hex: '#EDE8D8', hue: 'Warm creamy off-white' },
+    { id: 'pt-simply-white', name: 'Simply White', hex: '#F1EDDF', hue: 'Warm fresh white' },
+    { id: 'pt-decorator-white', name: 'Decorator White', hex: '#E7E3DA', hue: 'Warm soft white with depth' },
+    { id: 'pt-dove-white', name: 'Dove White', hex: '#E8E0CF', hue: 'Rich warm ivory white' },
+    { id: 'pt-ceiling-bright', name: 'Ceiling Bright White', hex: '#F5F5F2', hue: 'Ultra-flat bright white for ceilings' },
+  ]},
+];
+export const WALL_PAINT_OPTIONS = PAINT_OPTIONS.filter(p => p.category === 'walls');
+export const TRIM_PAINT_OPTIONS = PAINT_OPTIONS.filter(p => p.category === 'trim');
