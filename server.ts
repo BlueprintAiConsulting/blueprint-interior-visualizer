@@ -92,9 +92,10 @@ app.post('/api/interior-render', generationLimiter, async (req, res) => {
     activeZones.forEach(z => { prompt += `• ${z.name}: ${z.brand} ${z.lineName} "${z.colorName}" — ${z.hue} (hex: ${z.colorHex}) [${z.materialType}]\n`; });
     prompt += `\nRULES:\n1. PRESERVE room geometry, perspective, dimensions.\n2. DO NOT modify ${passConfig.exclusions.join(', ')}.\n3. ${passConfig.preserveNote}\n4. TEXTURE:\n${passConfig.textureInstructions}\n5. Maintain EXACT same lighting.\n6. Realistic reflections.\n7. Follow room vanishing points.\n8. PHOTOREALISM required — no AI artifacts.\n9. Material textures correctly scaled.`;
     const response = await withTimeout(ai.models.generateContent({
-      model: 'gemini-3.1-flash-image-preview',
+      model: 'gemini-2.0-flash-preview-image-generation',
       contents: { parts: [{ inlineData: { data: imageBase64, mimeType: mimeType || 'image/jpeg' } }, { text: prompt }] },
-    }), 90_000, `interior-render-${renderPass}`);
+      config: { responseModalities: ['IMAGE', 'TEXT'], temperature: 0.4 },
+    }), 120_000, `interior-render-${renderPass}`);
     let resultImage: string | null = null;
     for (const part of response.candidates?.[0]?.content?.parts || []) { if (part.inlineData) { resultImage = `data:image/png;base64,${part.inlineData.data}`; break; } }
     if (!resultImage) return res.status(500).json({ error: `AI did not return an image for ${renderPass} pass.` });
@@ -112,9 +113,10 @@ app.post('/api/interior-quick-render', generationLimiter, async (req, res) => {
     (zones as InteriorZonePayload[]).forEach(z => { prompt += `• ${z.name}: ${z.brand} ${z.lineName} "${z.colorName}" — ${z.hue} (hex: ${z.colorHex}) [${z.materialType}]\n`; });
     prompt += `\nCRITICAL: Preserve geometry, do NOT modify appliances/fixtures/furniture. Photorealistic result required.`;
     const response = await withTimeout(ai.models.generateContent({
-      model: 'gemini-3.1-flash-image-preview',
+      model: 'gemini-2.0-flash-preview-image-generation',
       contents: { parts: [{ inlineData: { data: imageBase64, mimeType: mimeType || 'image/jpeg' } }, { text: prompt }] },
-    }), 90_000, 'interior-quick-render');
+      config: { responseModalities: ['IMAGE', 'TEXT'], temperature: 0.4 },
+    }), 120_000, 'interior-quick-render');
     let resultImage: string | null = null;
     for (const part of response.candidates?.[0]?.content?.parts || []) { if (part.inlineData) { resultImage = `data:image/png;base64,${part.inlineData.data}`; break; } }
     if (!resultImage) return res.status(500).json({ error: 'AI did not return an image.' });
@@ -129,7 +131,7 @@ app.post('/api/enhance-image', generationLimiter, async (req, res) => {
   try {
     validateImagePayload(imageBase64, mimeType);
     const response = await ai.models.generateContent({
-      model: 'gemini-3.1-flash-image-preview',
+      model: 'gemini-2.0-flash-preview-image-generation',
       contents: [{ role: 'user', parts: [
         { inlineData: { mimeType, data: imageBase64 } },
         { text: `Optimize this interior room photo for AI material replacement. Remove clutter, preserve all surfaces (cabinets, countertops, tile, flooring, trim), maintain room geometry. Output a clean, well-lit room photo.` }
@@ -150,7 +152,7 @@ app.post('/api/auto-mask', generationLimiter, async (req, res) => {
   try {
     validateImagePayload(imageBase64, mimeType);
     const response = await withTimeout(ai.models.generateContent({
-      model: 'gemini-3.1-flash-image-preview',
+      model: 'gemini-2.0-flash-preview-image-generation',
       contents: { parts: [
         { inlineData: { data: imageBase64, mimeType: mimeType || 'image/png' } },
         { text: `Create a binary mask for "${maskTarget}". Target = PURE WHITE. Everything else = PURE BLACK. Sharp edges, no blur.` }
